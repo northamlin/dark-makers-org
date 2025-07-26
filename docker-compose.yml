@@ -1,0 +1,13 @@
+services:
+  strapi:
+    build: .
+    ports:
+      - 1337:1337
+    command: npm run develop
+    environment:
+      DATABASE_URL: "mongodb://192.168.10.20:27017/mantiser"
+      NEXTAUTH_URL: http://localhost:3000/m/api/auth
+    volumes:
+      - ./:/opt/app
+
+
