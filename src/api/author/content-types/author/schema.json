@@ -33,6 +33,21 @@
       "relation": "oneToMany",
       "target": "api::article.article",
       "mappedBy": "author"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "location": {
+      "type": "string"
+    },
+    "born": {
+      "type": "date"
+    },
+    "reports": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::report.report",
+      "mappedBy": "author"
     }
   }
 }

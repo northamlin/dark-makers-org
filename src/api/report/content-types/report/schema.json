@@ -15,7 +15,7 @@
       "type": "string"
     },
     "Date": {
-      "type": "datetime"
+      "type": "date"
     },
     "Description": {
       "type": "richtext"
@@ -32,6 +32,18 @@
     },
     "Location": {
       "type": "string"
+    },
+    "report_type": {
+      "type": "string"
+    },
+    "witness_name": {
+      "type": "string"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "reports"
     }
   }
 }

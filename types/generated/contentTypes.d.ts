@@ -454,9 +454,11 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   attributes: {
     articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
     avatar: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+    born: Schema.Attribute.Date;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.RichText;
     email: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -464,8 +466,10 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
       'api::author.author'
     > &
       Schema.Attribute.Private;
+    location: Schema.Attribute.String;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    reports: Schema.Attribute.Relation<'oneToMany', 'api::report.report'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -563,6 +567,38 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiHotspotHotspot extends Struct.CollectionTypeSchema {
+  collectionName: 'hotspots';
+  info: {
+    displayName: 'Hotspot';
+    pluralName: 'hotspots';
+    singularName: 'hotspot';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Desc: Schema.Attribute.Text;
+    endDate: Schema.Attribute.String;
+    fromDate: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hotspot.hotspot'
+    > &
+      Schema.Attribute.Private;
+    Locations: Schema.Attribute.String;
+    Name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiMakerMaker extends Struct.CollectionTypeSchema {
   collectionName: 'makers';
   info: {
@@ -580,6 +616,7 @@ export interface ApiMakerMaker extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     Description: Schema.Attribute.RichText;
+    hotspot: Schema.Attribute.Relation<'oneToMany', 'api::hotspot.hotspot'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::maker.maker'> &
       Schema.Attribute.Private;
@@ -604,10 +641,11 @@ export interface ApiReportReport extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Date: Schema.Attribute.DateTime;
+    Date: Schema.Attribute.Date;
     Description: Schema.Attribute.RichText;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -621,10 +659,12 @@ export interface ApiReportReport extends Struct.CollectionTypeSchema {
       true
     >;
     publishedAt: Schema.Attribute.DateTime;
+    report_type: Schema.Attribute.String;
     Title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    witness_name: Schema.Attribute.String;
   };
 }
 
@@ -1177,6 +1217,7 @@ declare module '@strapi/strapi' {
       'api::band.band': ApiBandBand;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
+      'api::hotspot.hotspot': ApiHotspotHotspot;
       'api::maker.maker': ApiMakerMaker;
       'api::report.report': ApiReportReport;
       'api::social.social': ApiSocialSocial;
