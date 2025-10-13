@@ -44,6 +44,16 @@
       "relation": "manyToOne",
       "target": "api::author.author",
       "inversedBy": "reports"
+    },
+    "hotspot": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::hotspot.hotspot"
+    },
+    "maker": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::maker.maker"
     }
   }
 }

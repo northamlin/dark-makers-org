@@ -40,14 +40,19 @@
     "location": {
       "type": "string"
     },
-    "born": {
-      "type": "date"
-    },
     "reports": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::report.report",
       "mappedBy": "author"
+    },
+    "hotspot": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::hotspot.hotspot"
+    },
+    "born": {
+      "type": "string"
     }
   }
 }

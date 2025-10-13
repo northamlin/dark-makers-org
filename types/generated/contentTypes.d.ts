@@ -454,12 +454,13 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   attributes: {
     articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
     avatar: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-    born: Schema.Attribute.Date;
+    born: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.RichText;
     email: Schema.Attribute.String;
+    hotspot: Schema.Attribute.Relation<'oneToMany', 'api::hotspot.hotspot'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -647,6 +648,7 @@ export interface ApiReportReport extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     Date: Schema.Attribute.Date;
     Description: Schema.Attribute.RichText;
+    hotspot: Schema.Attribute.Relation<'oneToMany', 'api::hotspot.hotspot'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -654,6 +656,7 @@ export interface ApiReportReport extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     Location: Schema.Attribute.String;
+    maker: Schema.Attribute.Relation<'oneToMany', 'api::maker.maker'>;
     Media: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
