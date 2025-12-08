@@ -54,6 +54,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::maker.maker"
+    },
+    "social": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::social.social",
+      "inversedBy": "reports"
     }
   }
 }

@@ -664,6 +664,7 @@ export interface ApiReportReport extends Struct.CollectionTypeSchema {
     >;
     publishedAt: Schema.Attribute.DateTime;
     report_type: Schema.Attribute.String;
+    social: Schema.Attribute.Relation<'manyToOne', 'api::social.social'>;
     Title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -701,6 +702,7 @@ export interface ApiSocialSocial extends Struct.CollectionTypeSchema {
     >;
     Plattform: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    reports: Schema.Attribute.Relation<'oneToMany', 'api::report.report'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
