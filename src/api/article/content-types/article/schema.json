@@ -47,6 +47,12 @@
     },
     "articel": {
       "type": "richtext"
+    },
+    "social": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::social.social",
+      "inversedBy": "articles"
     }
   }
 }
