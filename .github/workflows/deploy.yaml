@@ -27,7 +27,7 @@ jobs:
       - name: Check out Manifest
         uses: actions/checkout@v4
         with:
-          repository: Hacking-Robots-and-Beer/deploy
+          repository: northamlin/deploy
           ref: main
           path: manifest
           ssh-key: ${{ secrets.SAM_SSH }}
