@@ -12,7 +12,7 @@ service:
 ingress:
   enabled: true
   hosts:
-    - strapi.dark-makers.robots.beer
+    - dark-strapi.server.robots.beer
   tls: true
 
 db:
