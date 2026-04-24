@@ -3,12 +3,10 @@ RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev l
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
-WORKDIR /opt/
-COPY package.json ./
-RUN yarn global add node-gyp
-RUN yarn install --frozen-lockfile
-
 WORKDIR /opt/app
+COPY package.json ./
+RUN yarn global add node-gyp && yarn install
+
 COPY . .
 RUN yarn build
 RUN chown -R node:node /opt/app
