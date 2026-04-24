@@ -18,6 +18,8 @@ spec:
         {{- include "dark-makers-org.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: strapi
     spec:
+      imagePullSecrets:
+        - name: ghcr-pull-secret
       containers:
         - name: strapi
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
