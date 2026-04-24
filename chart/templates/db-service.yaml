@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dark-makers-org.fullname" . }}-db
+  namespace: dark-makers
+  labels:
+    {{- include "dark-makers-org.labels" . | nindent 4 }}
+    app.kubernetes.io/component: database
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+      targetPort: 5432
+  selector:
+    {{- include "dark-makers-org.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: database

@@ -1,0 +1,51 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/northamlin/dark-makers-org
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 1337
+
+ingress:
+  enabled: true
+  hosts:
+    - strapi.dark-makers.robots.beer
+  tls: true
+
+db:
+  image:
+    repository: postgres
+    tag: "16-alpine"
+  storage: 5Gi
+  user: strapi
+  password: strapi
+  name: darkmakers
+
+uploads:
+  storage: 5Gi
+
+strapi:
+  appKeys: ""
+  apiTokenSalt: ""
+  adminJwtSecret: ""
+  transferTokenSalt: ""
+  jwtSecret: ""
+
+resources:
+  app:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+  db:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
