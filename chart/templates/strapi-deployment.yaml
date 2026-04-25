@@ -20,6 +20,13 @@ spec:
     spec:
       imagePullSecrets:
         - name: ghcr-pull-secret
+      initContainers:
+        - name: fix-uploads-permissions
+          image: busybox
+          command: ["sh", "-c", "chown -R 1000:1000 /opt/app/public/uploads"]
+          volumeMounts:
+            - name: uploads
+              mountPath: /opt/app/public/uploads
       containers:
         - name: strapi
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
