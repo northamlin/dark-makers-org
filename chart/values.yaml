@@ -25,7 +25,7 @@ db:
   name: darkmakers
 
 uploads:
-  storage: 5Gi
+  storage: 20Gi
 
 strapi:
   appKeys: ""
