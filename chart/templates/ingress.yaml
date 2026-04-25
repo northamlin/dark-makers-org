@@ -8,10 +8,9 @@ metadata:
     {{- include "dark-makers-org.labels" . | nindent 4 }}
   annotations:
     cert-manager.io/cluster-issuer: http
-    acme.cert-manager.io/http01-edit-in-place: "true"
     kubernetes.io/ingress.class: traefik
     kubernetes.io/tls-acme: "true"
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure,web
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
 spec:
   {{- if .Values.ingress.tls }}
   tls:
