@@ -13,6 +13,7 @@ ingress:
   enabled: true
   hosts:
     - dark-strapi.server.robots.beer
+    - cdn.dark-makers.org
   tls: true
 
 db:

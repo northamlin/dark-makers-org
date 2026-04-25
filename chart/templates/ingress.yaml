@@ -15,11 +15,11 @@ metadata:
 spec:
   {{- if .Values.ingress.tls }}
   tls:
+    {{- range .Values.ingress.hosts }}
     - hosts:
-        {{- range .Values.ingress.hosts }}
         - {{ . }}
-        {{- end }}
-      secretName: {{ include "dark-makers-org.fullname" . }}-tls
+      secretName: {{ include "dark-makers-org.fullname" $ }}-{{ . | replace "." "-" }}-tls
+    {{- end }}
   {{- end }}
   rules:
     {{- range .Values.ingress.hosts }}
